@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Git & GitHub Cheat Sheet</title>
+  <meta name="description" content="A clean, modern Git & GitHub cheat sheet (Arabic/English)." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg"></div>
+
+  <header class="wrap hero">
+    <div class="hero__left">
+      <div class="topbar">
+        <div class="badge" data-i18n="badge">Cheat Sheet</div>
+
+        <div class="lang">
+          <button class="lang__btn is-active" data-set-lang="en" type="button">EN</button>
+          <button class="lang__btn" data-set-lang="ar" type="button">AR</button>
+        </div>
+      </div>
+
+      <h1 data-i18n="title">Git & GitHub Commands</h1>
+      <p class="sub" data-i18n="subtitle">
+        Quick, clean reference for daily Git work: setup, branches, remote, stash, tags, logs, cleaning, and more.
+      </p>
+
+      <div class="hero__controls">
+        <label class="search">
+          <span data-i18n="searchLabel">Search</span>
+          <input id="search" type="search" data-i18n-placeholder="searchPlaceholder"
+                 placeholder="Type: stash, branch, tag, remote..." autocomplete="off" />
+        </label>
+
+        <div class="toggle">
+          <input id="compact" type="checkbox" />
+          <label for="compact" data-i18n="compact">Compact</label>
+        </div>
+
+        <button class="btn" id="copyAll" type="button" data-i18n="copyAll" title="Copy all commands as text">
+          Copy All
+        </button>
+      </div>
+
+      <div class="chips" id="chips">
+        <button class="chip is-active" data-filter="all" data-i18n="chipAll">All</button>
+        <button class="chip" data-filter="basics" data-i18n="chipBasics">Basics</button>
+        <button class="chip" data-filter="config" data-i18n="chipConfig">Config</button>
+        <button class="chip" data-filter="ssh" data-i18n="chipSSH">SSH</button>
+        <button class="chip" data-filter="branches" data-i18n="chipBranches">Branches</button>
+        <button class="chip" data-filter="remote" data-i18n="chipRemote">Remote</button>
+        <button class="chip" data-filter="stash" data-i18n="chipStash">Stash</button>
+        <button class="chip" data-filter="undo" data-i18n="chipUndo">Undo/Clean</button>
+        <button class="chip" data-filter="logs" data-i18n="chipLogs">Logs</button>
+        <button class="chip" data-filter="tags" data-i18n="chipTags">Tags</button>
+        <button class="chip" data-filter="advanced" data-i18n="chipAdvanced">Advanced</button>
+        <button class="chip" data-filter="concepts" data-i18n="chipConcepts">Concepts</button>
+      </div>
+    </div>
+
+    <div class="hero__right">
+      <div class="card tip">
+        <h3 data-i18n="tipTitle">What’s the difference?</h3>
+        <p data-i18n="tipGit"><b>Git</b> is a version control system for tracking changes locally.</p>
+        <p data-i18n="tipGitHub"><b>GitHub</b> hosts your Git repositories online for collaboration.</p>
+        <div class="hr"></div>
+        <p class="muted" data-i18n="tipNote">Tip: Use SSH for smoother pushes/pulls once your key is set.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap grid" id="grid">
+
+    <!-- BASICS -->
+    <section class="card section" data-section="basics">
+      <div class="section__head">
+        <h2 data-i18n="basicsTitle">Basics</h2>
+        <p data-i18n="basicsDesc">Start, clone, check status, stage, commit.</p>
+      </div>
+
+      <article class="item" data-tags="basics">
+        <div class="item__title" data-i18n="cloneTitle">Clone a repository</div>
+        <div class="item__desc" data-i18n="cloneDesc">Copies a remote repo to your local machine (HTTPS or SSH).</div>
+        <pre class="cmd"><code>git clone &lt;URL&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="basics">
+        <div class="item__title" data-i18n="initTitle">Initialize a new repository</div>
+        <div class="item__desc" data-i18n="initDesc">Creates a new empty Git repository in the current folder.</div>
+        <pre class="cmd"><code>git init</code></pre>
+      </article>
+
+      <article class="item" data-tags="basics">
+        <div class="item__title" data-i18n="statusTitle">Check current status</div>
+        <div class="item__desc" data-i18n="statusDesc">Shows the state of working directory and staging area.</div>
+        <pre class="cmd"><code>git status</code></pre>
+      </article>
+
+      <article class="item" data-tags="basics">
+        <div class="item__title" data-i18n="addTitle">Stage files</div>
+        <div class="item__desc" data-i18n="addDesc">Add file(s) to staging. Use <code>.</code> to stage everything.</div>
+        <pre class="cmd"><code>git add &lt;file-name&gt;
+git add .</code></pre>
+      </article>
+
+      <article class="item" data-tags="basics">
+        <div class="item__title" data-i18n="commitTitle">Commit staged changes</div>
+        <div class="item__desc" data-i18n="commitDesc">Saves staged changes to local repository history.</div>
+        <pre class="cmd"><code>git commit -m "message"</code></pre>
+      </article>
+    </section>
+
+    <!-- CONFIG -->
+    <section class="card section" data-section="config">
+      <div class="section__head">
+        <h2 data-i18n="configTitle">Config & Aliases</h2>
+        <p data-i18n="configDesc">View or edit Git configuration and shortcuts.</p>
+      </div>
+
+      <article class="item" data-tags="config">
+        <div class="item__title" data-i18n="cfgListTitle">Show config</div>
+        <div class="item__desc" data-i18n="cfgListDesc">Lists config values.</div>
+        <pre class="cmd"><code>git config --list
+git config -l</code></pre>
+      </article>
+
+      <article class="item" data-tags="config">
+        <div class="item__title" data-i18n="cfgOriginTitle">Show config with file origins</div>
+        <div class="item__desc" data-i18n="cfgOriginDesc">Shows where each config value comes from.</div>
+        <pre class="cmd"><code>git config -l --show-origin</code></pre>
+      </article>
+
+      <article class="item" data-tags="config">
+        <div class="item__title" data-i18n="cfgSetTitle">Set global config</div>
+        <div class="item__desc" data-i18n="cfgSetDesc">Applies to all repositories for your user.</div>
+        <pre class="cmd"><code>git config --global &lt;name&gt; "value"</code></pre>
+      </article>
+
+      <article class="item" data-tags="config">
+        <div class="item__title" data-i18n="cfgUnsetTitle">Unset global config</div>
+        <div class="item__desc" data-i18n="cfgUnsetDesc">Removes a global config key.</div>
+        <pre class="cmd"><code>git config --global --unset &lt;name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="config">
+        <div class="item__title" data-i18n="cfgEditTitle">Edit global config file</div>
+        <div class="item__desc" data-i18n="cfgEditDesc">Opens the global config file in your editor.</div>
+        <pre class="cmd"><code>git config --global --edit</code></pre>
+      </article>
+
+      <article class="item" data-tags="config">
+        <div class="item__title" data-i18n="aliasTitle">Create a global alias</div>
+        <div class="item__desc" data-i18n="aliasDesc">Example: <code>git st</code> becomes <code>git status</code>.</div>
+        <pre class="cmd"><code>git config --global alias.&lt;alias&gt; "&lt;command&gt;"</code></pre>
+      </article>
+
+      <article class="item" data-tags="config">
+        <div class="item__title" data-i18n="aliasListTitle">List aliases</div>
+        <div class="item__desc" data-i18n="aliasListDesc">Shows all global aliases.</div>
+        <pre class="cmd"><code>git config --global --get-regexp alias</code></pre>
+      </article>
+
+      <article class="item" data-tags="config">
+        <div class="item__title" data-i18n="aliasRemoveTitle">Remove an alias</div>
+        <div class="item__desc" data-i18n="aliasRemoveDesc">Unsets a global alias.</div>
+        <pre class="cmd"><code>git config --global --unset alias.&lt;alias&gt;</code></pre>
+      </article>
+    </section>
+
+    <!-- SSH -->
+    <section class="card section" data-section="ssh">
+      <div class="section__head">
+        <h2 data-i18n="sshTitle">SSH (GitHub)</h2>
+        <p data-i18n="sshDesc">Generate and test SSH connection.</p>
+      </div>
+
+      <article class="item" data-tags="ssh">
+        <div class="item__title" data-i18n="sshGenTitle">Generate SSH key</div>
+        <div class="item__desc" data-i18n="sshGenDesc">Creates a 4096-bit RSA key with a comment (usually your email).</div>
+        <pre class="cmd"><code>ssh-keygen -t rsa -b 4096 -C "email@example.com"</code></pre>
+      </article>
+
+      <article class="item" data-tags="ssh">
+        <div class="item__title" data-i18n="sshCatTitle">Show public key</div>
+        <div class="item__desc" data-i18n="sshCatDesc">Display your public key file content.</div>
+        <pre class="cmd"><code>cat ~/.ssh/id_rsa.pub</code></pre>
+      </article>
+
+      <article class="item" data-tags="ssh">
+        <div class="item__title" data-i18n="sshTestTitle">Test GitHub SSH connection</div>
+        <div class="item__desc" data-i18n="sshTestDesc">Verifies your SSH auth to GitHub.</div>
+        <pre class="cmd"><code>ssh -T git@github.com</code></pre>
+      </article>
+    </section>
+
+    <!-- BRANCHES -->
+    <section class="card section" data-section="branches">
+      <div class="section__head">
+        <h2 data-i18n="branchesTitle">Branches</h2>
+        <p data-i18n="branchesDesc">Create, switch, rename, merge, delete.</p>
+      </div>
+
+      <article class="item" data-tags="branches">
+        <div class="item__title" data-i18n="brListTitle">List branches</div>
+        <div class="item__desc" data-i18n="brListDesc">Shows all local branches.</div>
+        <pre class="cmd"><code>git branch</code></pre>
+      </article>
+
+      <article class="item" data-tags="branches">
+        <div class="item__title" data-i18n="brCreateTitle">Create a branch</div>
+        <div class="item__desc" data-i18n="brCreateDesc">Creates a new local branch.</div>
+        <pre class="cmd"><code>git branch &lt;branch-name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="branches">
+        <div class="item__title" data-i18n="brSwitchTitle">Switch branches</div>
+        <div class="item__desc" data-i18n="brSwitchDesc">Moves you to another branch.</div>
+        <pre class="cmd"><code>git checkout &lt;branch-name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="branches">
+        <div class="item__title" data-i18n="brCreateSwitchTitle">Create and switch</div>
+        <div class="item__desc" data-i18n="brCreateSwitchDesc">Creates a new branch and checks it out immediately.</div>
+        <pre class="cmd"><code>git checkout -b &lt;branch-name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="branches">
+        <div class="item__title" data-i18n="brRenameTitle">Rename current branch</div>
+        <div class="item__desc" data-i18n="brRenameDesc">Renames the currently checked-out branch.</div>
+        <pre class="cmd"><code>git branch -m &lt;new-branch-name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="branches">
+        <div class="item__title" data-i18n="brMergeTitle">Merge a branch</div>
+        <div class="item__desc" data-i18n="brMergeDesc">Merges the specified branch into your current branch.</div>
+        <pre class="cmd"><code>git merge &lt;branch-name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="branches">
+        <div class="item__title" data-i18n="brDelSafeTitle">Delete a branch (safe)</div>
+        <div class="item__desc" data-i18n="brDelSafeDesc">Deletes only if it’s fully merged.</div>
+        <pre class="cmd"><code>git branch -d &lt;branch-name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="branches">
+        <div class="item__title" data-i18n="brDelForceTitle">Delete a branch (force)</div>
+        <div class="item__desc" data-i18n="brDelForceDesc">Forces deletion even with unmerged changes.</div>
+        <pre class="cmd"><code>git branch -D &lt;branch-name&gt;</code></pre>
+      </article>
+    </section>
+
+    <!-- REMOTE -->
+    <section class="card section" data-section="remote">
+      <div class="section__head">
+        <h2 data-i18n="remoteTitle">Remote</h2>
+        <p data-i18n="remoteDesc">Origins, push, pull, remote branches.</p>
+      </div>
+
+      <article class="item" data-tags="remote">
+        <div class="item__title" data-i18n="remoteShowTitle">Show remotes</div>
+        <div class="item__desc" data-i18n="remoteShowDesc">Lists remote names and their URLs.</div>
+        <pre class="cmd"><code>git remote -v</code></pre>
+      </article>
+
+      <article class="item" data-tags="remote">
+        <div class="item__title" data-i18n="remoteAddTitle">Add remote origin (SSH)</div>
+        <div class="item__desc" data-i18n="remoteAddDesc">Adds a remote named <code>origin</code> using SSH URL.</div>
+        <pre class="cmd"><code>git remote add origin git@github.com:&lt;username&gt;/&lt;repo-name&gt;.git</code></pre>
+      </article>
+
+      <article class="item" data-tags="remote">
+        <div class="item__title" data-i18n="remoteBranchesTitle">List remote branches</div>
+        <div class="item__desc" data-i18n="remoteBranchesDesc">Shows remote branches (after fetch).</div>
+        <pre class="cmd"><code>git branch -r</code></pre>
+      </article>
+
+      <article class="item" data-tags="remote">
+        <div class="item__title" data-i18n="pushTitle">Push a branch</div>
+        <div class="item__desc" data-i18n="pushDesc">Uploads your local branch changes to the remote.</div>
+        <pre class="cmd"><code>git push &lt;remote-name&gt; &lt;branch-name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="remote">
+        <div class="item__title" data-i18n="pullTitle">Pull a branch</div>
+        <div class="item__desc" data-i18n="pullDesc">Fetches and merges remote changes into your local branch.</div>
+        <pre class="cmd"><code>git pull &lt;remote-name&gt; &lt;branch-name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="remote">
+        <div class="item__title" data-i18n="forcePushTitle">Force push (danger)</div>
+        <div class="item__desc" data-i18n="forcePushDesc">Overwrites remote history. Use only when you know what you’re doing.</div>
+        <pre class="cmd"><code>git push &lt;remote-name&gt; &lt;branch-name&gt; --force</code></pre>
+      </article>
+    </section>
+
+    <!-- STASH -->
+    <section class="card section" data-section="stash">
+      <div class="section__head">
+        <h2 data-i18n="stashTitle">Stash</h2>
+        <p data-i18n="stashDesc">Temporarily save local changes and restore them later.</p>
+      </div>
+
+      <article class="item" data-tags="stash">
+        <div class="item__title" data-i18n="stashDoTitle">Stash changes</div>
+        <div class="item__desc" data-i18n="stashDoDesc">Stashes tracked changes and cleans the working directory.</div>
+        <pre class="cmd"><code>git stash</code></pre>
+      </article>
+
+      <article class="item" data-tags="stash">
+        <div class="item__title" data-i18n="stashMsgTitle">Stash with message</div>
+        <div class="item__desc" data-i18n="stashMsgDesc">Saves stash with a custom label.</div>
+        <pre class="cmd"><code>git stash save "message"</code></pre>
+      </article>
+
+      <article class="item" data-tags="stash">
+        <div class="item__title" data-i18n="stashListTitle">List stashes</div>
+        <div class="item__desc" data-i18n="stashListDesc">Shows saved stash entries.</div>
+        <pre class="cmd"><code>git stash list</code></pre>
+      </article>
+
+      <article class="item" data-tags="stash">
+        <div class="item__title" data-i18n="stashApplyTitle">Apply latest stash (keep it)</div>
+        <div class="item__desc" data-i18n="stashApplyDesc">Applies but does not remove it from stash list.</div>
+        <pre class="cmd"><code>git stash apply</code></pre>
+      </article>
+
+      <article class="item" data-tags="stash">
+        <div class="item__title" data-i18n="stashPopTitle">Pop latest stash (remove it)</div>
+        <div class="item__desc" data-i18n="stashPopDesc">Applies and removes the latest stash entry.</div>
+        <pre class="cmd"><code>git stash pop</code></pre>
+      </article>
+
+      <article class="item" data-tags="stash">
+        <div class="item__title" data-i18n="stashPopNTitle">Pop a specific stash</div>
+        <div class="item__desc" data-i18n="stashPopNDesc">Applies and removes a specific stash entry.</div>
+        <pre class="cmd"><code>git stash pop stash@{&lt;number&gt;}</code></pre>
+      </article>
+
+      <article class="item" data-tags="stash">
+        <div class="item__title" data-i18n="stashShowTitle">Show stash summary</div>
+        <div class="item__desc" data-i18n="stashShowDesc">Shows what changed in the stash.</div>
+        <pre class="cmd"><code>git stash show
+git stash show stash@{&lt;number&gt;}</code></pre>
+      </article>
+
+      <article class="item" data-tags="stash">
+        <div class="item__title" data-i18n="stashDropTitle">Drop stash entries</div>
+        <div class="item__desc" data-i18n="stashDropDesc">Remove latest or a specific stash entry.</div>
+        <pre class="cmd"><code>git stash drop
+git stash drop stash@{&lt;number&gt;}</code></pre>
+      </article>
+
+      <article class="item" data-tags="stash">
+        <div class="item__title" data-i18n="stashClearTitle">Clear all stashes</div>
+        <div class="item__desc" data-i18n="stashClearDesc">Deletes all stash entries.</div>
+        <pre class="cmd"><code>git stash clear</code></pre>
+      </article>
+    </section>
+
+    <!-- UNDO / CLEAN -->
+    <section class="card section" data-section="undo">
+      <div class="section__head">
+        <h2 data-i18n="undoTitle">Undo & Clean</h2>
+        <p data-i18n="undoDesc">Unstage, reset, clean untracked files, ignore files.</p>
+      </div>
+
+      <article class="item" data-tags="undo">
+        <div class="item__title" data-i18n="unstageClassicTitle">Unstage a file (classic)</div>
+        <div class="item__desc" data-i18n="unstageClassicDesc">Moves a file out of staging, keeps changes in working directory.</div>
+        <pre class="cmd"><code>git reset HEAD &lt;file-name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="undo">
+        <div class="item__title" data-i18n="unstageNewTitle">Unstage a file (recommended)</div>
+        <div class="item__desc" data-i18n="unstageNewDesc">Modern alternative to unstage.</div>
+        <pre class="cmd"><code>git restore --staged &lt;file-name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="undo">
+        <div class="item__title" data-i18n="cleanPreviewTitle">Preview clean</div>
+        <div class="item__desc" data-i18n="cleanPreviewDesc">Shows what would be removed (dry-run).</div>
+        <pre class="cmd"><code>git clean -n</code></pre>
+      </article>
+
+      <article class="item" data-tags="undo">
+        <div class="item__title" data-i18n="cleanTitle">Remove untracked files</div>
+        <div class="item__desc" data-i18n="cleanDesc">Deletes untracked files. Add <code>-d</code> to include directories.</div>
+        <pre class="cmd"><code>git clean -f
+git clean -fd</code></pre>
+      </article>
+
+      <article class="item" data-tags="undo">
+        <div class="item__title" data-i18n="resetHardTitle">Hard reset to a commit (danger)</div>
+        <div class="item__desc" data-i18n="resetHardDesc">Discards changes after that commit in your working directory.</div>
+        <pre class="cmd"><code>git reset --hard &lt;commit-hash&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="undo">
+        <div class="item__title" data-i18n="resetSoftTitle">Soft reset to a commit</div>
+        <div class="item__desc" data-i18n="resetSoftDesc">Moves HEAD but keeps changes staged.</div>
+        <pre class="cmd"><code>git reset --soft &lt;commit-hash&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="undo">
+        <div class="item__title" data-i18n="gitignoreTitle">Create .gitignore</div>
+        <div class="item__desc" data-i18n="gitignoreDesc">Create and edit ignore rules.</div>
+        <pre class="cmd"><code>touch .gitignore
+code .gitignore</code></pre>
+      </article>
+
+      <article class="item" data-tags="undo">
+        <div class="item__title" data-i18n="forceAddTitle">Force add ignored file</div>
+        <div class="item__desc" data-i18n="forceAddDesc">Stages a file even if it’s in .gitignore.</div>
+        <pre class="cmd"><code>git add -f &lt;file-name&gt;</code></pre>
+      </article>
+    </section>
+
+    <!-- LOGS -->
+    <section class="card section" data-section="logs">
+      <div class="section__head">
+        <h2 data-i18n="logsTitle">Logs</h2>
+        <p data-i18n="logsDesc">See commit history.</p>
+      </div>
+
+      <article class="item" data-tags="logs">
+        <div class="item__title" data-i18n="logTitle">Show commit history</div>
+        <div class="item__desc" data-i18n="logDesc">Displays commits with hashes, messages, authors, and dates.</div>
+        <pre class="cmd"><code>git log</code></pre>
+      </article>
+    </section>
+
+    <!-- TAGS -->
+    <section class="card section" data-section="tags">
+      <div class="section__head">
+        <h2 data-i18n="tagsTitle">Tags</h2>
+        <p data-i18n="tagsDesc">Create, list, push, and delete tags.</p>
+      </div>
+
+      <article class="item" data-tags="tags">
+        <div class="item__title" data-i18n="tagLightTitle">Create a lightweight tag</div>
+        <div class="item__desc" data-i18n="tagLightDesc">Points to the latest commit.</div>
+        <pre class="cmd"><code>git tag &lt;tag-name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="tags">
+        <div class="item__title" data-i18n="tagAnnoTitle">Create an annotated tag</div>
+        <div class="item__desc" data-i18n="tagAnnoDesc">Adds a message and metadata.</div>
+        <pre class="cmd"><code>git tag -a &lt;tag-name&gt; -m "message"</code></pre>
+      </article>
+
+      <article class="item" data-tags="tags">
+        <div class="item__title" data-i18n="tagListTitle">List tags</div>
+        <div class="item__desc" data-i18n="tagListDesc">Shows all tags (or with patterns).</div>
+        <pre class="cmd"><code>git tag
+git tag -l "v1.*"</code></pre>
+      </article>
+
+      <article class="item" data-tags="tags">
+        <div class="item__title" data-i18n="tagPushTitle">Push a tag</div>
+        <div class="item__desc" data-i18n="tagPushDesc">Uploads a tag to the remote.</div>
+        <pre class="cmd"><code>git push origin &lt;tag-name&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="tags">
+        <div class="item__title" data-i18n="tagDelTitle">Delete tag locally & remotely</div>
+        <div class="item__desc" data-i18n="tagDelDesc">Removes tag from local and remote.</div>
+        <pre class="cmd"><code>git tag -d &lt;tag-name&gt;
+git push origin --delete &lt;tag-name&gt;</code></pre>
+      </article>
+    </section>
+
+    <!-- ADVANCED -->
+    <section class="card section" data-section="advanced">
+      <div class="section__head">
+        <h2 data-i18n="advTitle">Advanced</h2>
+        <p data-i18n="advDesc">Cherry-pick commits from other branches.</p>
+      </div>
+
+      <article class="item" data-tags="advanced">
+        <div class="item__title" data-i18n="cpTitle">Cherry-pick a commit</div>
+        <div class="item__desc" data-i18n="cpDesc">Apply a commit from another branch into current branch.</div>
+        <pre class="cmd"><code>git cherry-pick &lt;commit-hash&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="advanced">
+        <div class="item__title" data-i18n="cpxTitle">Cherry-pick and add origin reference</div>
+        <div class="item__desc" data-i18n="cpxDesc">Adds a line indicating the original commit hash.</div>
+        <pre class="cmd"><code>git cherry-pick -x &lt;commit-hash&gt;</code></pre>
+      </article>
+
+      <article class="item" data-tags="advanced">
+        <div class="item__title" data-i18n="cpeTitle">Cherry-pick and edit message</div>
+        <div class="item__desc" data-i18n="cpeDesc">Opens editor so you can change the commit message.</div>
+        <pre class="cmd"><code>git cherry-pick -e &lt;commit-hash&gt;</code></pre>
+      </article>
+    </section>
+
+    <!-- CONCEPTS -->
+    <section class="card section" data-section="concepts">
+      <div class="section__head">
+        <h2 data-i18n="conceptsTitle">Concepts</h2>
+        <p data-i18n="conceptsDesc">Fork vs Clone.</p>
+      </div>
+
+      <article class="item" data-tags="concepts">
+        <div class="item__title" data-i18n="forkTitle">Fork</div>
+        <div class="item__desc" data-i18n="forkDesc">
+          Used by an external contributor who doesn’t have write access. It copies the repo to their GitHub account.
+          After changes, they open a Pull Request for review.
+        </div>
+        <pre class="cmd"><code>GitHub UI → Fork → Work → Pull Request</code></pre>
+      </article>
+
+      <article class="item" data-tags="concepts">
+        <div class="item__title" data-i18n="clone2Title">Clone</div>
+        <div class="item__desc" data-i18n="clone2Desc">
+          Copies a repository from GitHub to your local machine to work on it locally.
+        </div>
+        <pre class="cmd"><code>git clone &lt;URL&gt;</code></pre>
+      </article>
+    </section>
+
+  </main>
+
+  <footer class="wrap footer">
+    <div class="footer__left">
+      <span class="dot"></span>
+      <span data-i18n="footer">Made for quick reference · Works great on GitHub Pages</span>
+    </div>
+    <div class="footer__right">
+      <a class="link" href="#" id="backTop" data-i18n="backTop">Back to top</a>
+    </div>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>
